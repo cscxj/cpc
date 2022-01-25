@@ -1,0 +1,22 @@
+{
+  "include": ["lib/**/*.ts", "rollup.config.ts"],
+  "exclude": ["node_modules", "dist"],
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "Node",
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+
+    "baseUrl": ".",
+    "outDir": ".",
+
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strict": true,
+
+    "lib": ["ESNext", "DOM"]
+  }
+}
