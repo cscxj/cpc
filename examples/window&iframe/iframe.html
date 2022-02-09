@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window&iframe-iframe</title>
+</head>
+
+<body>
+    <div>iframe</div>
+    <script>
+        console.log()
+        const my = {
+            onMessage(fn) {
+                window.onmessage = ({ data }) => {
+                    fn(data)
+                }
+            },
+            postMessage(data) {
+                top.postMessage(data)
+            }
+        }
+    </script>
+    <script type="module">
+        import useCpc from '/dist/cpc.esm.js'
+        const {
+            onMessage,
+            handleMessage,
+            bind
+        } = useCpc()
+
+        const iframeObj = {
+            printHello() {
+                console.log('hello I am iframe');
+                return 'success'
+            },
+            printArgs(...args) {
+                console.log('打印参数', ...args)
+            }
+        }
+
+        my.onMessage(msg => {
+            handleMessage(msg)
+        })
+        onMessage(msg => {
+            my.postMessage(msg)
+        })
+        bind(iframeObj, 'iframeObj')
+    </script>
+</body>
+
+</html>

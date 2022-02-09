@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window&iframe</title>
+</head>
+
+<body>
+    <div>container</div>
+    <iframe src="./iframe.html"
+        sandbox="allow-same-origin allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-scripts allow-downloads"></iframe>
+    <script>
+        const my = {
+            onMessage(fn) {
+                window.onmessage = ({ data }) => {
+                    fn(data)
+                }
+            },
+            postMessage(data) {
+                window[0].postMessage(data)
+            }
+        }
+    </script>
+    <script type="module">
+        import useCpc from '/dist/cpc.esm.js'
+        const {
+            onMessage,
+            handleMessage,
+            proxy
+        } = useCpc()
+
+
+        my.onMessage(msg => {
+            handleMessage(msg)
+        })
+        onMessage(msg => {
+            my.postMessage(msg)
+        })
+
+        const iframeObj = proxy('iframeObj')
+
+        window.onload = async () => {
+            // 测试函数执行
+            const res = await iframeObj.printHello()
+            console.log('执行结果', res);
+            // 测试传惨
+            await iframeObj.printArgs('arg1', 'arg2', 'arg3')
+            // 测试为定义的调用
+            await iframeObj.undefind()
+        }
+
+    </script>
+</body>
+
+</html>
