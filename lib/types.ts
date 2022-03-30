@@ -11,7 +11,6 @@ export interface CpcPkg {
 
 export interface RequestPkg extends CpcPkg {
   type: PkgType.REQUEST
-  target: string
   cmd: string
   args: unknown[]
 }

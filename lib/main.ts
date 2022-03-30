@@ -10,10 +10,10 @@ import type {
 } from './types'
 import { genRequestId } from './utils'
 
-const messageMap: Map<RequestId, RespCallback> = new Map()
-const targetMap: Map<string, object> = new Map()
+function useCpc(executor?) {
+  const messageMap: Map<RequestId, RespCallback> = new Map()
+  let callTarget: Nullable<object> = null
 
-function useCpc() {
   let postMessage: Nullable<PostMessage> = null
 
   function onMessage(postFn: PostMessage) {
@@ -31,25 +31,31 @@ function useCpc() {
   }
 
   function _handleRequest(pkg: RequestPkg) {
-    const target = targetMap.get(pkg.target)
     const resultPkg: ResponsePkg = {
       type: PkgType.RESPONSE,
       requestId: pkg.requestId,
       success: true,
       data: null
     }
-    if (target) {
+    if (callTarget) {
       try {
-        const callResult = target[pkg.cmd](...pkg.args)
+        const callResult = callTarget[pkg.cmd](...pkg.args)
         resultPkg.data = callResult
       } catch (e) {
         resultPkg.success = false
-        resultPkg.data = e
+        if (
+          e instanceof TypeError &&
+          (e.message = 'callTarget[pkg.cmd] is not a function')
+        ) {
+          resultPkg.data = new Error(`[cpc] 被调用对象不存在函数 ${pkg.cmd} `)
+        } else {
+          resultPkg.data = e
+        }
       }
     } else {
       resultPkg.success = false
-      resultPkg.data = new ReferenceError(
-        `'${pkg.target}' is not defined. before calling, bind it at the called end.`
+      resultPkg.data = new Error(
+        '[cpc] 被调用端需要绑定一个调用目标，例如：useCpc(target)'
       )
     }
     postMessage?.(resultPkg)
@@ -66,11 +72,11 @@ function useCpc() {
     }
   }
 
-  function bind(target: object, name: string) {
-    targetMap.set(name, target)
+  function bind(target: object) {
+    callTarget = target
   }
 
-  function proxy<T extends object>(name: string) {
+  function proxy<T extends object>() {
     return new Proxy<T>({} as T, {
       get(_, key) {
         return (...args) => {
@@ -79,7 +85,6 @@ function useCpc() {
             requestId,
             type: PkgType.REQUEST,
             cmd: key as string,
-            target: name,
             args
           }
 
@@ -99,11 +104,12 @@ function useCpc() {
     })
   }
 
+  executor && bind(executor)
+
   return {
     onMessage,
     handleMessage,
-    bind,
-    proxy
+    Channel: proxy()
   }
 }
 export default useCpc

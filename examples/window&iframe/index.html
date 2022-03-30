@@ -29,7 +29,7 @@
         const {
             onMessage,
             handleMessage,
-            proxy
+            Channel: iframeObj
         } = useCpc()
 
 
@@ -40,16 +40,14 @@
             my.postMessage(msg)
         })
 
-        const iframeObj = proxy('iframeObj')
-
         window.onload = async () => {
             // 测试函数执行
             const res = await iframeObj.printHello()
             console.log('执行结果', res);
             // 测试传惨
             await iframeObj.printArgs('arg1', 'arg2', 'arg3')
-            // 测试为定义的调用
-            await iframeObj.undefind()
+            // 测试不存在的函数
+            await iframeObj.aaa()
         }
 
     </script>
