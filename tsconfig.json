@@ -3,7 +3,7 @@
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {
     "module": "ESNext",
-    "target": "ESNext",
+    "target": "ES2015",
     "moduleResolution": "Node",
     "skipLibCheck": true,
     "resolveJsonModule": true,

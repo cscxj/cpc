@@ -30,7 +30,7 @@ function useCpc(executor?) {
     }
   }
 
-  function _handleRequest(pkg: RequestPkg) {
+  async function _handleRequest(pkg: RequestPkg) {
     const resultPkg: ResponsePkg = {
       type: PkgType.RESPONSE,
       requestId: pkg.requestId,
@@ -39,7 +39,7 @@ function useCpc(executor?) {
     }
     if (callTarget) {
       try {
-        const callResult = callTarget[pkg.cmd](...pkg.args)
+        const callResult = await callTarget[pkg.cmd](...pkg.args)
         resultPkg.data = callResult
       } catch (e) {
         resultPkg.success = false
@@ -112,4 +112,7 @@ function useCpc(executor?) {
     Channel: proxy()
   }
 }
-export default useCpc
+
+export {
+  useCpc
+}

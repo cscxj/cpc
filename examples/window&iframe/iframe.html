@@ -24,7 +24,7 @@
         }
     </script>
     <script type="module">
-        import useCpc from '/dist/cpc.esm.js'
+        import { useCpc } from '/dist/cpc.esm.js'
 
         const iframeObj = {
             printHello() {
@@ -33,6 +33,9 @@
             },
             printArgs(...args) {
                 console.log('打印参数', ...args)
+            },
+            asyncDemo() {
+                return Promise.resolve('这是异步函数')
             }
         }
 

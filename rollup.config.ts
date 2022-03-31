@@ -8,12 +8,16 @@ const config: RollupOptions = {
   output: [
     {
       format: 'umd',
-      file: `dist/${pkg.name}.umd.js`,
+      file: pkg.browser,
       name: 'cpc'
     },
     {
       format: 'esm',
-      file: `dist/${pkg.name}.esm.js`
+      file: pkg.module
+    },
+    {
+      format: 'cjs',
+      file: pkg.main
     }
   ],
   plugins: [typescript(tsConfig.compilerOptions)]

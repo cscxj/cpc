@@ -25,7 +25,7 @@
         }
     </script>
     <script type="module">
-        import useCpc from '/dist/cpc.esm.js'
+        import { useCpc } from '/dist/cpc.esm.js'
         const {
             onMessage,
             handleMessage,
@@ -46,6 +46,8 @@
             console.log('执行结果', res);
             // 测试传惨
             await iframeObj.printArgs('arg1', 'arg2', 'arg3')
+            // 测试异步函数
+            console.log(await iframeObj.asyncDemo())
             // 测试不存在的函数
             await iframeObj.aaa()
         }
