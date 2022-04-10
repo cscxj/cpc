@@ -1,4 +1,6 @@
 {
+  "name": "@cxj-npm/cpc",
+  "version": "1.0.0",
   "scripts": {
     "build": "rollup --config rollup.config.ts --configPlugin typescript"
   },
@@ -12,8 +14,6 @@
     "typescript": "^4.5.5"
   },
 
-  "name": "@cxj-npm/cpc",
-  "version": "1.0.0-beta.5",
   "main": "dist/cpc.cjs.js",
   "module": "dist/cpc.esm.js",
   "browser": "dist/cpc.umd.js",
