@@ -1,8 +1,10 @@
 {
   "name": "@cxj-npm/cpc",
   "version": "1.0.0",
+  "description": "通道过程调用",
   "scripts": {
-    "build": "rollup --config rollup.config.ts --configPlugin typescript"
+    "build": "rollup --config rollup.config.ts --configPlugin typescript",
+    "prerelase": "npm run build && npm version prerelease -m \"release: %s\" && npm publish"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.3.0",
