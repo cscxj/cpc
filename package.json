@@ -4,7 +4,7 @@
   "description": "通道过程调用",
   "scripts": {
     "build": "rollup --config rollup.config.ts --configPlugin typescript",
-    "prerelase": "npm run build && npm version prerelease -m \"release: %s\" && npm publish"
+    "prerelase": "npm run build && npm version prerelease -m \"release: %s\" && npm publish --access public"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.3.0",
