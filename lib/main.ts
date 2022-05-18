@@ -93,7 +93,7 @@ function useCpc(executor?) {
 
           postMessage?.(pkg)
 
-          return new Promise((reject, resolve) => {
+          return new Promise((resolve, reject) => {
             messageMap.set(requestId, (respPkg: ResponsePkg) => {
               if (respPkg.success) {
                 resolve(respPkg.data)
