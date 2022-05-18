@@ -96,9 +96,9 @@ function useCpc(executor?) {
           return new Promise((reject, resolve) => {
             messageMap.set(requestId, (respPkg: ResponsePkg) => {
               if (respPkg.success) {
-                reject(respPkg.data)
-              } else {
                 resolve(respPkg.data)
+              } else {
+                reject(respPkg.data)
               }
             })
           })
