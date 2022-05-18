@@ -8,7 +8,10 @@ import type {
   RespCallback,
   ResponsePkg
 } from './types'
-import { genRequestId } from './utils'
+
+function genRequestId() {
+  return Date.now()
+}
 
 function useCpc(executor?) {
   const messageMap: Map<RequestId, RespCallback> = new Map()
@@ -113,6 +116,4 @@ function useCpc(executor?) {
   }
 }
 
-export {
-  useCpc
-}
+export { useCpc }
