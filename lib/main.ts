@@ -43,8 +43,6 @@ function useCpc(executor?) {
     if (callTarget) {
       try {
         const callResult = await callTarget[pkg.cmd](...pkg.args)
-        console.log('调用结果（没有报错）', callResult)
-
         resultPkg.data = callResult
       } catch (e) {
         resultPkg.success = false
