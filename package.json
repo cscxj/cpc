@@ -1,6 +1,6 @@
 {
   "name": "@cxj-npm/cpc",
-  "version": "1.0.1-5",
+  "version": "1.0.1-6",
   "description": "通道过程调用",
   "scripts": {
     "build": "rollup --config rollup.config.ts --configPlugin typescript",
