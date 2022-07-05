@@ -10,7 +10,7 @@ import type {
 } from './types'
 
 function genRequestId() {
-  return Math.random().toString(16)
+  return Math.random().toString(36)
 }
 
 function useCpc(executor?) {
