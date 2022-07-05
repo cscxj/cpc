@@ -2,7 +2,7 @@ import { PkgType } from './enum'
 
 export type Nullable<T> = T | null
 
-export type RequestId = number
+export type RequestId = string
 
 export interface CpcPkg {
   type: PkgType
