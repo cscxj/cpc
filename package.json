@@ -1,6 +1,6 @@
 {
   "name": "@cxj-npm/cpc",
-  "version": "1.0.1-10",
+  "version": "1.1.0",
   "description": "通道过程调用",
   "scripts": {
     "build": "rollup --config rollup.config.js",
