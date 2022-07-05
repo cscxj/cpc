@@ -4,7 +4,9 @@
   "description": "通道过程调用",
   "scripts": {
     "build": "rollup --config rollup.config.js",
-    "prerelase": "npm run build && npm version prerelease -m \"release: %s\" && npm publish --access public"
+    "minor": "npm run build && npm version minor -m \"release: %s\" && npm publish --access public",
+    "patch": "npm run build && npm version patch -m \"release: %s\" && npm publish --access public",
+    "prerelease": "npm run build && npm version prerelease -m \"release: %s\" && npm publish --access public"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.10.1",
