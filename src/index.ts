@@ -66,12 +66,8 @@ function useCpc(executor?) {
 
   function _handleResponse(pkg: ResponsePkg) {
     const callback = messageMap.get(pkg.requestId)
-    if (pkg.success) {
-      if (callback) {
-        callback(pkg)
-      }
-    } else {
-      throw pkg.data
+    if (callback) {
+      callback(pkg)
     }
   }
 
