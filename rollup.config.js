@@ -1,10 +1,12 @@
-import { RollupOptions } from 'rollup'
-import typescript from '@rollup/plugin-typescript'
+import typescript from 'rollup-plugin-typescript2'
 import pkg from './package.json'
 import tsConfig from './tsconfig.json'
 
-const config: RollupOptions = {
-  input: 'lib/main.ts',
+/**
+ * @type {import('rollup').RollupOptions}
+ */
+const config = {
+  input: 'src/index.ts',
   output: [
     {
       format: 'umd',
@@ -20,7 +22,7 @@ const config: RollupOptions = {
       file: pkg.main
     }
   ],
-  plugins: [typescript(tsConfig.compilerOptions)]
+  plugins: [typescript(tsConfig)]
 }
 
 export default config

@@ -1,4 +1,7 @@
-import { PkgType } from './enum'
+export enum PkgType {
+  REQUEST = '__cpc_request__',
+  RESPONSE = '__cpc_response__'
+}
 
 export type Nullable<T> = T | null
 

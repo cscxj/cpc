@@ -1,4 +1,4 @@
-import { PkgType } from './enum'
+import { PkgType } from './types'
 import type {
   CpcPkg,
   Nullable,

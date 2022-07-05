@@ -3,11 +3,10 @@
   "version": "1.0.1-8",
   "description": "通道过程调用",
   "scripts": {
-    "build": "rollup --config rollup.config.ts --configPlugin typescript",
+    "build": "rollup --config rollup.config.js",
     "prerelase": "npm run build && npm version prerelease -m \"release: %s\" && npm publish --access public"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^7.32.0",
@@ -18,7 +17,11 @@
   "main": "dist/cpc.cjs.js",
   "module": "dist/cpc.esm.js",
   "browser": "dist/cpc.umd.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist/**/*"
-  ]
+  ],
+  "dependencies": {
+    "rollup-plugin-typescript2": "^0.32.1"
+  }
 }

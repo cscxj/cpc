@@ -1,6 +1,11 @@
 {
-  "include": ["lib/**/*.ts", "rollup.config.ts"],
-  "exclude": ["node_modules", "dist"],
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
   "compilerOptions": {
     "module": "ESNext",
     "target": "ES5",
@@ -8,15 +13,18 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-
     "baseUrl": ".",
-    "outDir": ".",
-
+    "outDir": "dist",
     "strictNullChecks": true,
     "noImplicitAny": false,
     "noImplicitThis": true,
     "strict": true,
-
-    "lib": ["ESNext", "DOM"]
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "declaration": true,
+    "declarationDir": "dist",
+    "emitDeclarationOnly": false
   }
 }
