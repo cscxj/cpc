@@ -13,9 +13,9 @@ function genRequestId() {
   return Math.random().toString(36)
 }
 
-function useCpc(executor?) {
+function useCpc<T extends object>(executor?) {
   const messageMap: Map<RequestId, RespCallback> = new Map()
-  let callTarget: Nullable<object> = null
+  let callTarget: object
 
   let postMessage: Nullable<PostMessage> = null
 
@@ -108,7 +108,7 @@ function useCpc(executor?) {
   return {
     onMessage,
     handleMessage,
-    Channel: proxy()
+    Channel: proxy<T>()
   }
 }
 
